@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -15,12 +14,25 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+  
     try {
-      await axios.post("http://localhost:5000/auth/register", formData);
+      const response = await fetch("http://localhost:5000/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Something went wrong");
+      }
+  
       alert("Signup successful! Please log in.");
       navigate("/login");
     } catch (err) {
-      setError(err.response?.data?.error || "Something went wrong");
+      setError(err.message || "Something went wrong");
     }
   };
 

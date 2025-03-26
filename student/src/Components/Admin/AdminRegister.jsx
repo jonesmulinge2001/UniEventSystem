@@ -52,9 +52,9 @@ const AdminRegister = () => {
         <h2 className="text-center text-xl font-bold text-gray-800 mb-4">Admin Registration</h2>
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <motion.input whileFocus={{ scale: 1.02 }} type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" />
-          <motion.input whileFocus={{ scale: 1.02 }} type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" />
-          <motion.input whileFocus={{ scale: 1.02 }} type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400" />
+          <motion.input whileFocus={{ scale: 1.02 }} type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-400" />
+          <motion.input whileFocus={{ scale: 1.02 }} type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-400" />
+          <motion.input whileFocus={{ scale: 1.02 }} type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required className="w-full p-2 border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-400" />
           
           {/* Register Button */}
           <motion.button 
@@ -62,7 +62,7 @@ const AdminRegister = () => {
             whileTap={{ scale: 0.95 }} 
             type="submit" 
             disabled={loading} 
-            className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+            className="w-full bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700"
           >
             {loading ? "Registering..." : "Register"}
           </motion.button>
@@ -72,7 +72,7 @@ const AdminRegister = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mt-4 w-full border border-blue-600 text-blue-600 p-2 rounded hover:bg-blue-600 hover:text-white"
+          className="mt-4 w-full border border-blue-600 text-blue-600 p-2 rounded-full hover:bg-blue-600 hover:text-white"
           onClick={() => navigate("/admin/login")}
         >
           Already have an account? Login

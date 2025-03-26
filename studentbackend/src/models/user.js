@@ -3,7 +3,8 @@ const db = require("../config/db");
 const User = {
   create: (userData, callback) => {
     const { name, email, password, role } = userData;
-    db.query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", [name, email, password, role], callback);
+    db.query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)", 
+      [name, email, password, role], callback);
   },
 
   findByEmail: (email, callback) => {
@@ -14,7 +15,7 @@ const User = {
     db.query("SELECT * FROM users WHERE id = ?", [id], callback);
   },
 
-  getAll: (callback) => {
+  findAll: (callback) => {  // ✅ Renamed from getAll to findAll
     db.query("SELECT id, name, email, role FROM users", callback);
   }
 };

@@ -60,7 +60,7 @@ const AdminLogin = () => {
             <input
               type="email"
               placeholder="Admin Email"
-              className="w-full rounded-lg border p-3 pl-10 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-full border p-3 pl-10 outline-none focus:ring-2 focus:ring-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -73,7 +73,7 @@ const AdminLogin = () => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full rounded-lg border p-3 pl-10 outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-full border p-3 pl-10 outline-none focus:ring-2 focus:ring-blue-500"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -85,7 +85,7 @@ const AdminLogin = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-full rounded-lg bg-blue-600 p-3 text-white transition duration-300 hover:bg-blue-700"
+            className="w-full rounded-full bg-blue-600 p-3 text-white transition duration-300 hover:bg-blue-700"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
@@ -96,8 +96,8 @@ const AdminLogin = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mt-4 w-full rounded-lg border border-blue-600 p-3 text-blue-600 transition duration-300 hover:bg-blue-600 hover:text-white"
-          onClick={() => navigate("/admin/sidebar")}
+          className="mt-4 w-full rounded-full border border-blue-600 p-3 text-blue-600 transition duration-300 hover:bg-blue-600 hover:text-white"
+          onClick={() => navigate("/admin/")}
         >
           Don't have an account? Register
         </motion.button>

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Login = () => {
@@ -8,9 +7,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleHome = () =>{
-    navigate("/")
-  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -18,13 +14,32 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+
+    // Form validation
+    if (!formData.email || !formData.password) {
+      setError("Both fields are required!");
+      return;
+    }
+
     try {
-      const res = await axios.post("http://localhost:5000/auth/login", formData);
-      localStorage.setItem("token", res.data.token);
-      alert("Login successful!");
-      navigate("/dashboard");
-    } catch (err) {
-      setError(err.response?.data?.error || "Invalid credentials");
+      const myResponse = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!myResponse.ok) {
+        throw new Error("Invalid credentials");
+      }
+
+      const myData = await myResponse.json();
+      localStorage.setItem("token", myData.token);
+      alert("Login successful");
+      // navigate("/dashboard");
+    } catch (error) {
+      setError(error.message || "Invalid credentials");
     }
   };
 
@@ -40,17 +55,22 @@ const Login = () => {
         {error && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-500 text-sm mb-2">{error}</motion.p>}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            type="email" name="email" placeholder="Email"
+            type="email"
+            name="email"
+            placeholder="Email"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            onChange={handleChange} required
+            onChange={handleChange}
+            required
           />
           <input
-            type="password" name="password" placeholder="Password"
+            type="password"
+            name="password"
+            placeholder="Password"
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            onChange={handleChange} required
+            onChange={handleChange}
+            required
           />
           <motion.button
-            // onClick={handleHome}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
@@ -60,7 +80,10 @@ const Login = () => {
           </motion.button>
         </form>
         <p className="text-sm mt-4 text-center text-gray-600">
-          Don't have an account? <a href="/signup" className="text-indigo-500 hover:underline">Sign up</a>
+          Don't have an account?{" "}
+          <Link to="/signup" className="text-indigo-500 hover:underline">
+            Register
+          </Link>
         </p>
       </motion.div>
     </div>

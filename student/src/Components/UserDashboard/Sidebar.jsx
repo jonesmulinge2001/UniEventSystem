@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { FaHome, FaCalendarAlt, FaUser, FaSignOutAlt, FaBars } from "react-icons/fa";
+import { FaHome, FaCalendarAlt, FaUser, FaSignOutAlt, FaBars, FaBell } from "react-icons/fa";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -43,6 +43,12 @@ const Sidebar = () => {
             <Link to="/profile" className="flex items-center space-x-2 hover:text-gray-300 transition">
               <FaUser />
               <span>Profile</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/profile" className="flex items-center space-x-2 hover:text-gray-300 transition">
+              <FaBell />
+              <span>Notifications</span>
             </Link>
           </li>
           <li>

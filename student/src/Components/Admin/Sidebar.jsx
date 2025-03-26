@@ -1,4 +1,4 @@
-import { BarChart, Calendar, MessageCircle, Users } from "lucide-react";
+import { BarChart, Calendar, MessageCircle, Users,CalendarPlus } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Sidebar = () => {
@@ -10,6 +10,10 @@ const Sidebar = () => {
           <NavLink to="/admin/events" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <Calendar className="text-xl" />
             <span>Manage Events</span>
+          </NavLink>
+          <NavLink to="/admin/addevent" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
+            <CalendarPlus className="text-xl" />
+            <span>Add event</span>
           </NavLink>
           <NavLink to="/admin/users" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <Users className="text-xl" />
