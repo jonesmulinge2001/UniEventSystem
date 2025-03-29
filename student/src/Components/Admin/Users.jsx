@@ -6,27 +6,30 @@ const Users = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/auth/users', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then(response => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/auth/users', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }
-        return response.json();
-      })
-      .then(data => {
+
+        const data = await response.json();
         setUsers(data);
         setLoading(false);
-      })
-      .catch(err => {
+      } catch (err) {
         setError(err.message);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchUsers();
   }, []);
 
   return (

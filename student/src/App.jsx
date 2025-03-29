@@ -17,6 +17,8 @@ import Reports from "./Components/Admin/Reports";
 import Sidebar from "./Components/Admin/Sidebar"; // Ensure you're importing Navbar, not Sidebar
 import AddEvent from "./Components/Admin/AddEvent";
 import Users from "./Components/Admin/Users";
+import AdminNotifications from "./Components/Admin/AdminNotifications";
+import AdminNotificationsList from "./Components/Admin/AdminNotificationsList";
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
         <Route path="/profile" element={<UserProfile/>}/>
         <Route path="/notifications" element={<UserNotifications/>}/>
 
-        {/* Admin Routes */}
+        {/* Admin auth Routes */}
         <Route path="/admin" element={<AdminRegister />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         
@@ -39,6 +41,8 @@ function App() {
           <Route path="reports" element={<Reports />} />
           <Route path="addevent" element={<AddEvent/>}/>
           <Route path="users" element={<Users/>}/>
+          <Route path="notifications" element={<AdminNotifications/>}/>
+          <Route path="notificationslist" element={<AdminNotificationsList/>}/>
         </Route>
       </Routes>
   );

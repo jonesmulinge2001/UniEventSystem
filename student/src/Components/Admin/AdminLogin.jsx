@@ -5,7 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ const AdminLogin = () => {
       if (response.ok) {
         localStorage.setItem("token", data.token);
         alert("Login successful!");
-        navigate("/admin/sidebar"); // Redirect after login
+        navigate("/admin/events"); // Redirect to events after login
       } else {
         setError(data.error || "Login failed. Please try again.");
       }

@@ -4,36 +4,31 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/userRoute");
 const eventRoutes = require("./routes/adminEventRoutes");
+const adminNotificationRoutes = require("./routes/adminNotificationRoutes");
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
-// ✅ Middleware to catch empty or malformed JSON
-app.use(express.json({
-  verify: (req, res, buf, encoding) => {
-    try {
-      if (buf.length) JSON.parse(buf.toString());
-    } catch (e) {
-      res.status(400).json({ error: "Invalid JSON format" });
-      throw new Error("Invalid JSON");
-    }
-  }
-}));
-
-// 📌 Routes
-app.use("/auth", authRoutes);
-app.use("/events", eventRoutes);
-
-// 📌 Global Error Handler for Syntax Errors
-app.use((err, req, res, next) => {
-  if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
-    return res.status(400).json({ error: "Malformed JSON request" });
-  }
+// Debugging Middleware
+app.use((req, res, next) => {
+  console.log(`➡️ ${req.method} ${req.url}`, req.body);
   next();
 });
 
-// 📌 Start Server
+// Routes
+app.use("/auth", authRoutes);
+app.use("/events", eventRoutes);
+app.use("/admin", adminNotificationRoutes);
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: "Internal Server Error" });
+});
+
+// Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running at: http://localhost:${PORT}`));

@@ -28,7 +28,7 @@ const AdminRegister = () => {
       }
 
       alert("Admin registered successfully!");
-      navigate("/admin/login"); // Redirect to login after registration
+      navigate("/admin/login"); // Redirect to login after registra
     } catch (err) {
       setError(err.message);
     } finally {

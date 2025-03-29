@@ -1,4 +1,5 @@
 import { BarChart, Calendar, MessageCircle, Users,CalendarPlus } from "lucide-react";
+import { FaBell } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 
 const Sidebar = () => {
@@ -22,6 +23,14 @@ const Sidebar = () => {
           <NavLink to="/admin/analytics" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <BarChart className="text-xl" />
             <span>Analytics</span>
+          </NavLink>
+          <NavLink to="/admin/notifications" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
+            <FaBell className="text-xl" />
+            <span>Notifications</span>
+          </NavLink>
+          <NavLink to="/admin/notificationslist" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
+            <FaBell className="text-xl" />
+            <span>Notifications list</span>
           </NavLink>
           <NavLink to="/admin/user" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <MessageCircle className="text-xl" />
