@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHome, FaCalendarAlt, FaUser, FaSignOutAlt, FaBars, FaBell } from "react-icons/fa";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
+  
+  const navigate = useNavigate();
+  const handleNavigate = () =>{
+    navigate("/login");
+  }
 
   return (
     <>
@@ -28,15 +33,15 @@ const Sidebar = () => {
         <h2 className="text-2xl font-bold mb-8">Dashboard</h2>
         <ul className="space-y-4">
           <li>
-            <Link to="/" className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <Link to="/home" className="flex items-center space-x-2 hover:text-gray-300 transition">
               <FaHome />
               <span>Home</span>
             </Link>
           </li>
           <li>
-            <Link to="/events" className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <Link to="/registeredevents" className="flex items-center space-x-2 hover:text-gray-300 transition">
               <FaCalendarAlt />
-              <span>Events</span>
+              <span>Registered Events</span>
             </Link>
           </li>
           <li>
@@ -52,7 +57,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <button className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <button onClick={handleNavigate} className="flex items-center space-x-2 cursor-pointer hover:text-gray-300 transition">
               <FaSignOutAlt />
               <span>Logout</span>
             </button>

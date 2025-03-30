@@ -37,7 +37,7 @@ const Login = () => {
       const myData = await myResponse.json();
       localStorage.setItem("token", myData.token);
       alert("Login successful");
-      // navigate("/dashboard");
+      navigate("/home");
     } catch (error) {
       setError(error.message || "Invalid credentials");
     }

@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/userRoute");
 const eventRoutes = require("./routes/adminEventRoutes");
 const adminNotificationRoutes = require("./routes/adminNotificationRoutes");
+const registerRoutes = require("./routes/registrationRoutes");
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRoutes);
 app.use("/events", eventRoutes);
 app.use("/admin", adminNotificationRoutes);
+app.use("/",registerRoutes)
 
 // Global Error Handler
 app.use((err, req, res, next) => {

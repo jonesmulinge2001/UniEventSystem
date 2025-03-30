@@ -26,11 +26,11 @@ const Sidebar = () => {
           </NavLink>
           <NavLink to="/admin/notifications" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <FaBell className="text-xl" />
-            <span>Notifications</span>
+            <span>Send Notifications</span>
           </NavLink>
           <NavLink to="/admin/notificationslist" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <FaBell className="text-xl" />
-            <span>Notifications list</span>
+            <span>All Notifications</span>
           </NavLink>
           <NavLink to="/admin/user" className={({ isActive }) => `flex items-center gap-4 p-2 rounded-md ${isActive ? 'bg-blue-800' : 'hover:bg-blue-700'}`}> 
             <MessageCircle className="text-xl" />
