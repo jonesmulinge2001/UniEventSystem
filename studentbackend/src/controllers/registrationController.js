@@ -48,7 +48,7 @@ const getUserEvents = (req, res) => {
     db.query(
         `SELECT 
             events.id,
-            events.title AS name,  // Aliased to match frontend expectation
+            events.title AS name, 
             events.date,
             events.location,
             events.description

@@ -25,7 +25,7 @@ const Home = () => {
       }
     };
 
-    fetchEvents();  
+    fetchEvents();
   }, []);
 
   const handleRegisterClick = (event) => {
@@ -50,7 +50,7 @@ const Home = () => {
         body: JSON.stringify({ ...formData, eventId: selectedEvent.id }),
       });
 
-      const responseData = await response.json(); // Get the response JSON
+      const responseData = await response.json();
 
       if (!response.ok) {
         throw new Error(responseData.message || "Failed to register");
@@ -60,16 +60,16 @@ const Home = () => {
       setSelectedEvent(null);
       setFormData({ name: "", regno: "", course: "" });
     } catch (error) {
-      alert(`❌ ${error.message}`); // Display the actual error message
+      alert(`❌ ${error.message}`);
     }
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen">
+    <div className="flex flex-col lg:flex-row -mt-6 min-h-screen">
       <Sidebar />
       <div className="flex-1 p-6 lg:-ml-12 w-full max-w-screen-xl -mt-6 mx-auto text-center overflow-hidden">
-        <h1 className="text-xl md:text-2xl font-bold">Explore New Events</h1>
-        <p className="text-gray-600 mt-2 text-sm md:text-lg">Stay updated</p>
+        <h1 className="text-xl md:text-2xl font-bold">Explore New University Events</h1>
+        <p className="text-gray-600 mt-2 text-sm md:text-lg">...and stay updated</p>
 
         {loading && <p className="mt-4 text-gray-500">Loading events...</p>}
         {error && <p className="mt-4 text-red-500">{error}</p>}
@@ -81,7 +81,7 @@ const Home = () => {
               <p className="text-sm text-gray-600">{event.date} - {event.location}</p>
               <p className="text-sm text-gray-700 mt-2">{event.description}</p>
               <button 
-                className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 w-full max-w-xs"
+                className="mt-4 bg-green-500 text-white cursor-pointer px-2 py-1 rounded-full hover:bg-green-600 w-full max-w-xs"
                 onClick={() => handleRegisterClick(event)}
               >
                 Register
@@ -92,7 +92,7 @@ const Home = () => {
       </div>
 
       {selectedEvent && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg w-96">
             <h2 className="text-lg font-bold mb-4">Register for {selectedEvent.title}</h2>
             <form onSubmit={handleFormSubmit} className="flex flex-col space-y-4">
@@ -102,7 +102,7 @@ const Home = () => {
                 value={formData.name} 
                 onChange={handleInputChange} 
                 placeholder="Your Name" 
-                className="border p-2 rounded" 
+                className="border p-2 rounded-full outline-none" 
                 required
               />
               <input 
@@ -111,7 +111,7 @@ const Home = () => {
                 value={formData.regno} 
                 onChange={handleInputChange} 
                 placeholder="Registration Number" 
-                className="border p-2 rounded" 
+                className="border p-2 rounded-full outline-none" 
                 required
               />
               <input 
@@ -120,22 +120,27 @@ const Home = () => {
                 value={formData.course} 
                 onChange={handleInputChange} 
                 placeholder="Course" 
-                className="border p-2 rounded" 
+                className="border p-2 rounded-full outline-none" 
                 required
               />
-              <button 
-                type="submit" 
-                className="bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-              >
-                Submit
-              </button>
-              <button 
-                type="button" 
-                className="bg-gray-400 text-white py-2 rounded hover:bg-gray-500"
-                onClick={() => setSelectedEvent(null)}
-              >
-                Cancel
-              </button>
+
+              {/* Submit & Cancel Buttons Side by Side */}
+              <div className="flex justify-between space-x-4">
+                <button 
+                  type="submit" 
+                  className="flex-1 bg-blue-500 text-white py-2 rounded-full hover:bg-blue-600"
+                >
+                  Submit
+                </button>
+                <button 
+                  type="button" 
+                  className="flex-1 bg-red-500 text-white py-2 rounded-full hover:bg-gray-500"
+                  onClick={() => setSelectedEvent(null)}
+                >
+                  Cancel
+                </button>
+              </div>
+
             </form>
           </div>
         </div>

@@ -65,3 +65,27 @@ exports.getUserById = (req, res) => {
     res.status(200).json(user);
   });
 };
+
+// Update User Role (Admin Only)
+exports.updateUserRole = (req, res) => {
+  try {
+    const { userId, newRole } = req.body;
+
+    if (!["admin", "user"].includes(newRole)) {
+      return res.status(400).json({ error: "Invalid role" });
+    }
+
+    User.findById(userId, (err, user) => {
+      if (err) return res.status(500).json({ error: "Database error" });
+      if (!user) return res.status(404).json({ error: "User not found" });
+
+      User.updateRole(userId, newRole, (updateErr) => {
+        if (updateErr) return res.status(500).json({ error: "Failed to update role" });
+
+        res.status(200).json({ message: `User role updated to ${newRole}` });
+      });
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

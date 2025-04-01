@@ -14,7 +14,7 @@ const RegisteredEvents = () => {
 
         setLoading(true);
         setError(null);
-        setEvents([]); // Clear previous events before fetching new ones
+        setEvents([]);
 
         try {
             const response = await fetch(`http://localhost:5000/user-events/${regno}`);
@@ -34,54 +34,57 @@ const RegisteredEvents = () => {
     };
 
     return (
-        <div className="p-6 max-w-lg mx-auto bg-white shadow-md rounded-lg">
-            <h2 className="text-xl font-semibold mb-4">Search Your Registered Events</h2>
-            
-            <div className="flex gap-2 mb-4">
+        <div className="p-6 mx-auto bg-white shadow-lg rounded-lg flex-1 lg:ml-64 md:ml-56 sm:ml-16"> 
+            <h2 className="text-2xl sm:text-xl font-semibold mb-6 text-center text-gray-600">
+                Search Your Registered Events
+            </h2>
+
+            {/* Search Input & Button */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-4 items-center w-full">
                 <input
-                    type="text"
-                    placeholder="Enter your registration number"
+                    type="search"
+                    placeholder="Enter registration number"
                     value={regno}
                     onChange={(e) => {
                         setRegno(e.target.value);
-                        if (error) setError(null); // Clear error when user starts typing
+                        if (error) setError(null);
                     }}
-                    className="flex-grow p-2 border rounded"
+                    className="w-full sm:w-3/4 p-3 border rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
                 <button
                     onClick={fetchEvents}
                     disabled={!regno.trim() || loading}
-                    className={`px-4 py-2 rounded text-white ${
-                        !regno.trim() || loading
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-blue-500 hover:bg-blue-600"
+                    className={`w-full sm:w-auto px-6 py-2 text-xs sm:text-base rounded-lg text-white transition-all ${
+                        !regno.trim() || loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
                     }`}
                 >
                     {loading ? "Searching..." : "Search"}
                 </button>
             </div>
-            
-            {error && <p className="text-red-500 mt-4">{error}</p>}
 
-            {events.length > 0 && (
+            {/* Error Message */}
+            {error && <p className="text-red-500 text-center">{error}</p>}
+
+            {/* Display Events */}
+            {events.length > 0 ? (
                 <>
-                    <h3 className="text-lg font-semibold mt-4 mb-2">Your Registered Events</h3>
-                    <ul className="mt-2 space-y-4">
+                    <h3 className="text-lg sm:text-base font-semibold mt-2 mb-2 text-center">
+                        Your Registered Events
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {events.map((event) => (
-                            <li key={event.id} className="p-4 border rounded shadow">
-                                <h2 className="text-xl font-bold text-blue-600">{event.title}</h2>
-                                <h3 className="font-semibold">{event.name}</h3>
-                                <p className="text-sm text-gray-600">{event.date}</p>
-                                <p className="text-sm">{event.location}</p>
-                                <p className="text-sm">{event.description}</p>
-                            </li>
+                            <div key={event.id} className="p-4 border rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition">
+                                <h2 className="text-lg font-bold text-blue-600">{event.title}</h2>
+                                <p className="text-sm text-gray-700 font-semibold">{event.name}</p>
+                                <p className="text-xs text-gray-600">{event.date}</p>
+                                <p className="text-xs">{event.location}</p>
+                                <p className="text-xs text-gray-600">{event.description}</p>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </>
-            )}
-
-            {!loading && !error && events.length === 0 && (
-                <p className="text-gray-500 mt-4">No registered events found.</p>
+            ) : (
+                !loading && !error && <p className="text-gray-500 text-center mt-4">No registered events found.</p>
             )}
         </div>
     );

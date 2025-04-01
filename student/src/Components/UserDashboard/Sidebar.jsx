@@ -5,11 +5,11 @@ import { FaHome, FaCalendarAlt, FaUser, FaSignOutAlt, FaBars, FaBell } from "rea
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
-  
   const navigate = useNavigate();
-  const handleNavigate = () =>{
+
+  const handleNavigate = () => {
     navigate("/login");
-  }
+  };
 
   return (
     <>
@@ -23,43 +23,48 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <motion.div
-        initial={{ x: -250 }}
-        animate={{ x: isOpen ? 0 : -250 }}
+        initial={{ width: 60 }}
+        animate={{ width: isOpen ? 240 : 80 }}
         transition={{ duration: 0.3 }}
-        className={`fixed top-0 left-0 h-full bg-blue-700 text-white w-60 p-6 shadow-lg ${
-          isOpen ? "block" : "hidden"
-        } md:block`}
+        className="fixed top-0 left-0 h-full bg-blue-700 text-white shadow-lg flex flex-col items-start p-4"
       >
-        <h2 className="text-2xl font-bold mb-8">Dashboard</h2>
-        <ul className="space-y-4">
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="text-white mb-4 hidden md:block"
+        >
+          <FaBars size={20} />
+        </button>
+        
+        <h2 className={`text-xl font-bold mb-8 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>Dashboard</h2>
+        <ul className="space-y-4 w-full">
           <li>
-            <Link to="/home" className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <Link to="/home" className="flex items-center space-x-3 hover:text-gray-300 transition">
               <FaHome />
-              <span>Home</span>
+              {isOpen && <span>Home</span>}
             </Link>
           </li>
           <li>
-            <Link to="/registeredevents" className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <Link to="/registeredevents" className="flex items-center space-x-3 hover:text-gray-300 transition">
               <FaCalendarAlt />
-              <span>Registered Events</span>
+              {isOpen && <span>Registered Events</span>}
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <Link to="/profile" className="flex items-center space-x-3 hover:text-gray-300 transition">
               <FaUser />
-              <span>Profile</span>
+              {isOpen && <span>Profile</span>}
             </Link>
           </li>
           <li>
-            <Link to="/profile" className="flex items-center space-x-2 hover:text-gray-300 transition">
+            <Link to="/notifications" className="flex items-center space-x-3 hover:text-gray-300 transition">
               <FaBell />
-              <span>Notifications</span>
+              {isOpen && <span>Notifications</span>}
             </Link>
           </li>
           <li>
-            <button onClick={handleNavigate} className="flex items-center space-x-2 cursor-pointer hover:text-gray-300 transition">
+            <button onClick={handleNavigate} className="flex items-center space-x-3 cursor-pointer hover:text-gray-300 transition">
               <FaSignOutAlt />
-              <span>Logout</span>
+              {isOpen && <span>Logout</span>}
             </button>
           </li>
         </ul>

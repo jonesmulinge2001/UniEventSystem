@@ -20,14 +20,14 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/events", eventRoutes);
-app.use("/admin", adminNotificationRoutes);
-app.use("/",registerRoutes)
+app.use("/auth", authRoutes);  // User authentication & role update
+app.use("/events", eventRoutes); // Event management
+app.use("/admin", adminNotificationRoutes); // Admin notifications
+app.use("/", registerRoutes); // Registration system
 
 // Global Error Handler
 app.use((err, req, res, next) => {
-  console.error(err);
+  console.error("🔥 Error:", err);
   res.status(500).json({ error: "Internal Server Error" });
 });
 

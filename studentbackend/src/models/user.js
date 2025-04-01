@@ -19,5 +19,10 @@ const User = {
     db.query("SELECT id, name, email, role FROM users", callback);
   }
 };
+User.updateRole = (userId, newRole, callback) => {
+  const sql = "UPDATE users SET role = ? WHERE id = ?";
+  db.query(sql, [newRole, userId], callback);
+};
+
 
 module.exports = User;

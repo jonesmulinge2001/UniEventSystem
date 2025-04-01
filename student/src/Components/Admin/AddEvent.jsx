@@ -16,11 +16,16 @@ const AddEvent = () => {
     setEventData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // const validateDate = () =>{
+  //   const today = new Date().toISOString().split("T")[0];
+  //   if(eventData.date < today)
+  // }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
-    
+    // validateDate();
     const token = localStorage.getItem("token");
     if (!token) {
       setMessage("Unauthorized. Please log in again.");

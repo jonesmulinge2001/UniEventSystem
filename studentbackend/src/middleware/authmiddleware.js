@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-// 📌 Verify Token
+//  Verify Token
 exports.verifyToken = (req, res, next) => {
   const token = req.header("Authorization");
 
@@ -18,7 +18,7 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-// 📌 Check If User is an Admin
+//  Check If User is an Admin
 exports.isAdmin = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ error: "Access denied. Admins only." });

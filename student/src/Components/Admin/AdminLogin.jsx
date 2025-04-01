@@ -29,7 +29,7 @@ const AdminLogin = () => {
       if (response.ok) {
         localStorage.setItem("token", data.token);
         alert("Login successful!");
-        navigate("/admin/events"); // Redirect to events after login
+        navigate("/admin/dashboard/events"); // Redirect to events after login
       } else {
         setError(data.error || "Login failed. Please try again.");
       }
@@ -87,7 +87,7 @@ const AdminLogin = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-full rounded-full bg-blue-600 p-3 text-white transition duration-300 hover:bg-blue-700"
+            className="w-full rounded-full bg-blue-600 cursor-pointer p-3 text-white transition duration-300 hover:bg-blue-700"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
@@ -95,14 +95,14 @@ const AdminLogin = () => {
         </form>
 
         {/* Register Button */}
-        <motion.button
+        {/* <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="mt-4 w-full rounded-full border border-blue-600 p-3 text-blue-600 transition duration-300 hover:bg-blue-600 hover:text-white"
           onClick={() => navigate("/admin/")}
         >
           Don't have an account? Register
-        </motion.button>
+        </motion.button> */}
 
         <p className="mt-4 text-center text-gray-500 text-sm">
           Only authorized admins can access this panel.
