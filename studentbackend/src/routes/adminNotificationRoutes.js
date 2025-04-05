@@ -7,5 +7,7 @@ router.get("/notifications", adminNotificationController.getAllNotifications);
 router.post("/send-to-all", adminNotificationController.sendNotificationToAll);
 router.get("/notifications/user/:userId", adminNotificationController.getNotificationsByUserId);
 router.put("/notifications/read/:id", adminNotificationController.markNotificationAsRead);
+router.delete("/notifications/:id", adminNotificationController.deleteNotification);
+
 
 module.exports = router;

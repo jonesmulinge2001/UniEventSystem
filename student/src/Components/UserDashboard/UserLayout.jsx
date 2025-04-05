@@ -1,19 +1,18 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar"; // User Sidebar
+import Sidebar from "./Sidebar"; // Import Sidebar
 
-const UserLayout = () => {
+function UserLayout() {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar (Fixed) */}
+    <div className="flex">
+      {/* Sidebar remains fixed */}
       <Sidebar />
-
-      {/* Main Content Area */}
-      <div className="flex-1 p-6 ml-60 bg-gray-100 overflow-auto">
-        <Outlet /> {/* This renders the selected route component */}
+      
+      {/* Content area for dashboard pages */}
+      <div className="flex-1 p-4 ml-[80px] md:ml-[240px]">
+        <Outlet /> {/* This is where the pages will be rendered */}
       </div>
     </div>
   );
-};
+}
 
 export default UserLayout;

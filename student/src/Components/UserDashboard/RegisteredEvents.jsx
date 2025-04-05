@@ -34,7 +34,7 @@ const RegisteredEvents = () => {
     };
 
     return (
-        <div className="p-6 mx-auto bg-white shadow-lg rounded-lg flex-1 lg:ml-64 md:ml-56 sm:ml-16"> 
+        <div className="p-6 mx-auto bg-white shadow-lg rounded-lg w-full px-4 sm:px-8 lg:px-16">
             <h2 className="text-2xl sm:text-xl font-semibold mb-6 text-center text-gray-600">
                 Search Your Registered Events
             </h2>
@@ -49,13 +49,15 @@ const RegisteredEvents = () => {
                         setRegno(e.target.value);
                         if (error) setError(null);
                     }}
-                    className="w-full sm:w-3/4 p-3 border rounded-lg text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full sm:w-3/4 p-3 border border-gray-300 rounded-full text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
                 />
                 <button
                     onClick={fetchEvents}
                     disabled={!regno.trim() || loading}
-                    className={`w-full sm:w-auto px-6 py-2 text-xs sm:text-base rounded-lg text-white transition-all ${
-                        !regno.trim() || loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+                    className={`w-auto sm:w-1/4 px-6 py-2 text-xs sm:text-base rounded-full text-white transition-all ${
+                        !regno.trim() || loading
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-blue-500 hover:bg-blue-600"
                     }`}
                 >
                     {loading ? "Searching..." : "Search"}
@@ -68,16 +70,16 @@ const RegisteredEvents = () => {
             {/* Display Events */}
             {events.length > 0 ? (
                 <>
-                    <h3 className="text-lg sm:text-base font-semibold mt-2 mb-2 text-center">
+                    <h3 className="text-lg sm:text-base font-semibold mt-2 mb-4 text-center text-gray-700">
                         Your Registered Events
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {events.map((event) => (
-                            <div key={event.id} className="p-4 border rounded-lg shadow-lg bg-gray-50 hover:shadow-xl transition">
-                                <h2 className="text-lg font-bold text-blue-600">{event.title}</h2>
-                                <p className="text-sm text-gray-700 font-semibold">{event.name}</p>
-                                <p className="text-xs text-gray-600">{event.date}</p>
-                                <p className="text-xs">{event.location}</p>
+                            <div key={event.id} className="p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 ease-in-out">
+                                <h2 className="text-xl font-semibold text-blue-600 mb-2">{event.title}</h2>
+                                <p className="text-sm text-gray-600 font-medium mb-1">{event.name}</p>
+                                <p className="text-xs text-gray-500">{event.date}</p>
+                                <p className="text-xs text-gray-500 mb-3">{event.location}</p>
                                 <p className="text-xs text-gray-600">{event.description}</p>
                             </div>
                         ))}

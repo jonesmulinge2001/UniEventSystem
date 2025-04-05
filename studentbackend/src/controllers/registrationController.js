@@ -1,5 +1,4 @@
-const db = require("../config/db"); // Import database connection
-
+const db = require("../config/db"); 
 // Register for an event
 const registerForEvent = (req, res) => {
     const { name, regno, course, eventId } = req.body;
@@ -38,7 +37,6 @@ const registerForEvent = (req, res) => {
     );
 };
 
-// Get registered events for a user
 // Get registered events for a user
 const getUserEvents = (req, res) => {
     const { regno } = req.params;

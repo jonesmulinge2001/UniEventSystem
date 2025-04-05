@@ -12,9 +12,9 @@ import UserNotifications from "./Components/UserDashboard/UserNotifications";
 
 // Admin Components
 import AdminLogin from "./Components/Admin/AdminLogin";
+import Sidebar from "./Components/Admin/Sidebar";
 import Events from "./Components/Admin/Events";
 import Reports from "./Components/Admin/Reports";
-import Sidebar from "./Components/Admin/Sidebar";
 import AddEvent from "./Components/Admin/AddEvent";
 import Users from "./Components/Admin/Users";
 import AdminNotifications from "./Components/Admin/AdminNotifications";
@@ -30,13 +30,14 @@ function App() {
       <Routes>
         {/* Redirect to signup if user is not authenticated */}
         <Route path="/" element={isAuthenticated() ? <UserLayout /> : <Navigate to="/signup" />} />
-        
+
         {/* User Authentication Routes */}
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
 
-        {/* User Dashboard Layout */}
-        <Route path="/" element={<UserLayout />}>
+        {/* User Dashboard Routes (Nested Inside UserLayout) */}
+        <Route path="/dashboard" element={<UserLayout />}>
+          <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<Home />} />
           <Route path="registeredevents" element={<RegisteredEvents />} />
           <Route path="profile" element={<UserProfile />} />
@@ -47,7 +48,7 @@ function App() {
         <Route path="/admin" element={<Navigate to="/admin/login" />} />
         <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* Admin Dashboard */}
+        {/* Admin Dashboard (Nested Inside Sidebar) */}
         <Route path="/admin/dashboard" element={<Sidebar />}>
           <Route index element={<Navigate to="events" />} />
           <Route path="events" element={<Events />} />

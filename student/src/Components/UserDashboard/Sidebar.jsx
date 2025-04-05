@@ -38,31 +38,46 @@ const Sidebar = () => {
         <h2 className={`text-xl font-bold mb-8 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 hidden"}`}>Dashboard</h2>
         <ul className="space-y-4 w-full">
           <li>
-            <Link to="/home" className="flex items-center space-x-3 hover:text-gray-300 transition">
+            <Link 
+              to="/dashboard/home" 
+              className="flex items-center space-x-3 hover:text-gray-300 transition"
+            >
               <FaHome />
               {isOpen && <span>Home</span>}
             </Link>
           </li>
           <li>
-            <Link to="/registeredevents" className="flex items-center space-x-3 hover:text-gray-300 transition">
+            <Link 
+              to="/dashboard/registeredevents" 
+              className="flex items-center space-x-3 hover:text-gray-300 transition"
+            >
               <FaCalendarAlt />
               {isOpen && <span>Registered Events</span>}
             </Link>
           </li>
-          <li>
-            <Link to="/profile" className="flex items-center space-x-3 hover:text-gray-300 transition">
+          {/* <li>
+            <Link 
+              to="/dashboard/profile" 
+              className="flex items-center space-x-3 hover:text-gray-300 transition"
+            >
               <FaUser />
               {isOpen && <span>Profile</span>}
             </Link>
-          </li>
+          </li> */}
           <li>
-            <Link to="/notifications" className="flex items-center space-x-3 hover:text-gray-300 transition">
+            <Link 
+              to="/dashboard/notifications" 
+              className="flex items-center space-x-3 hover:text-gray-300 transition"
+            >
               <FaBell />
               {isOpen && <span>Notifications</span>}
             </Link>
           </li>
           <li>
-            <button onClick={handleNavigate} className="flex items-center space-x-3 cursor-pointer hover:text-gray-300 transition">
+            <button 
+              onClick={handleNavigate} 
+              className="flex items-center space-x-3 cursor-pointer hover:text-gray-300 transition"
+            >
               <FaSignOutAlt />
               {isOpen && <span>Logout</span>}
             </button>

@@ -13,8 +13,7 @@ const { verifyToken, isAdmin } = require("../middleware/authmiddleware");
 router.post("/create", verifyToken, isAdmin, createEvent);
 
 // 📌 Get all events (Anyone can view)
-router.get("/", getAllEvents);  // ✅ Fixed the function name
-
+router.get("/", getAllEvents);  // 
 // 📌 Get a single event by ID (Anyone can view)
 router.get("/:id", getEventById);
 

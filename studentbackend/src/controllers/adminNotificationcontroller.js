@@ -86,3 +86,16 @@ exports.markNotificationAsRead = async (req, res) => {
     res.status(500).json({ error: "Failed to mark notification as read" });
   }
 };
+
+exports.deleteNotification = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await db.query("DELETE FROM notifications WHERE id = ?", [id]);
+    res.status(200).json({ message: "Notification deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting notification:", error);
+    res.status(500).json({ error: "Failed to delete notification" });
+  }
+};
+
